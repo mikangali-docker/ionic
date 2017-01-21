@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build -t mikanioic .
+  - docker run -d mikanioic
+  - docker ps -a
+  - docker run mikanioic /bin/sh -c "node -v && npm -v && cordova -v && ionic -v"

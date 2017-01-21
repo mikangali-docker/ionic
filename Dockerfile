@@ -8,7 +8,7 @@ ENV IONIC_VERSION=2.2.1 \
 	NPM_VERSION=3.10.10 \
 	PATH=$PATH:/opt/node/bin
 
-# Instal nodejs	
+# Instal nodejs	& requirements
 
 WORKDIR "/opt/node"
 

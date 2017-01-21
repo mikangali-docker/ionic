@@ -1,4 +1,4 @@
-FROM mikangali-docker/android
+FROM mikangali/android
 
 MAINTAINER Michael <mike@mikangali.com>
 

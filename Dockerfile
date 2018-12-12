@@ -2,12 +2,12 @@ FROM mikangali/android
 
 MAINTAINER Michael <mike@mikangali.com>
 
-ENV IONIC_VERSION=3.20.0 \
+ENV IONIC_VERSION=4.5.0 \
 	NODEJS_VERSION=8.11.1 \
 	CORDOVA_VERSION=8.0.0 \
 	NPM_VERSION=5.6.0 \
-	FASTLANE_VERSION=2.89.0 \ 
-  	FIREBASE_TOOL_VERSION=3.13.1 \
+	FASTLANE_VERSION=2.110.0 \ 
+  	FIREBASE_TOOL_VERSION=6.1.2 \
 	PATH=$PATH:/opt/node/bin
 
 # Install nodejs	& requirements

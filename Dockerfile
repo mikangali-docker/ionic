@@ -1,6 +1,6 @@
 FROM mikangali/android
 
-MAINTAINER Michael <mike@mikangali.com>
+LABEL authors="Michael <mike@mikangali.com>"
 
 ENV IONIC_VERSION=4.5.0 \
 	NODEJS_VERSION=8.11.1 \
@@ -11,7 +11,7 @@ ENV IONIC_VERSION=4.5.0 \
 
 # Install nodejs & requirements
 
-WORKDIR "/opt/node"
+WORKDIR /opt/node
 
 RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip2 --no-install-recommends && \
     curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip
 
 RUN npm i -g --unsafe-perm npm@${NPM_VERSION} cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION} firebase-tools@${FIREBASE_TOOL_VERSION}
 
-# Install fastlane
+# Install fastlane and cleanup
 
 RUN apt-get install -y build-essential && \
     apt-get install -y ruby-dev && \    
@@ -28,4 +28,8 @@ RUN apt-get install -y build-essential && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
-WORKDIR "/app"
+WORKDIR /app
+
+# Fix android build : "No installed build tools found"
+# https://stackoverflow.com/questions/31190355/ionic-build-android-error-no-installed-build-tools-found-please-install-the
+RUN sdkmanager "build-tools;27.0.3"

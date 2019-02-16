@@ -3,11 +3,10 @@ FROM mikangali/android
 LABEL authors="Michael <mike@mikangali.com>"
 
 ENV IONIC_VERSION=4.5.0 \
-	NODEJS_VERSION=8.11.1 \
-	CORDOVA_VERSION=8.0.0 \
-	NPM_VERSION=5.6.0 \
-	FASTLANE_VERSION=2.110.0 \ 
-	PATH=$PATH:/opt/node/bin
+	  NODEJS_VERSION=10.15.1 \
+	  CORDOVA_VERSION=8.0.0 \
+	  FASTLANE_VERSION=2.110.0 \ 
+	  PATH=$PATH:/opt/node/bin
 
 # Install nodejs & requirements
 
@@ -18,7 +17,7 @@ RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip
 
 # Instal Ionic
 
-RUN npm i -g --unsafe-perm npm@${NPM_VERSION} cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION} firebase-tools@${FIREBASE_TOOL_VERSION}
+RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
 
 # Install fastlane and cleanup
 

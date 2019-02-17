@@ -31,6 +31,6 @@ WORKDIR /app
 
 # Fix android build : "No installed build tools found"
 # https://stackoverflow.com/questions/31190355/ionic-build-android-error-no-installed-build-tools-found-please-install-the
-RUN touch ~/.android/repositories.cfg
+RUN mkdir ~/.android/ && touch ~/.android/repositories.cfg
 RUN yes | sudo sdkmanager --licenses
 RUN sdkmanager "build-tools;27.0.3"

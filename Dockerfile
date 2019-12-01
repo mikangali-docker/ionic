@@ -16,7 +16,7 @@ WORKDIR /opt/node
 RUN apt-get update && apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 --no-install-recommends && \
     curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
     curl -sSL https://get.rvm.io | bash && \
-    source /etc/profile.d/rvm.sh
+    . /etc/profile.d/rvm.sh
 
 # Instal Ionic
 

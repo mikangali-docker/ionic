@@ -18,7 +18,7 @@ RUN apt-get update && \
     apt-add-repository -y ppa:rael-gc/rvm && \
     apt-get update && \
     apt-get install -y rvm && \
-    curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
+    curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
     
 
 # Instal Ionic + Cordova

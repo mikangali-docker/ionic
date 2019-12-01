@@ -2,6 +2,8 @@ FROM mikangali/android
 
 LABEL authors="Michael <mike@mikangali.com>"
 
+SHELL ["/bin/bash", "-c"]
+
 ENV IONIC_VERSION=4.5.0 \
     NODEJS_VERSION=10.15.1 \
     CORDOVA_VERSION=8.0.0 \

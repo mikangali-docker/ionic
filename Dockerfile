@@ -5,7 +5,7 @@ LABEL authors="Michael <mike@mikangali.com>"
 ENV IONIC_VERSION=4.5.0 \
 	  NODEJS_VERSION=10.15.1 \
 	  CORDOVA_VERSION=8.0.0 \
-	  FASTLANE_VERSION=2.110.0 \ 
+	  FASTLANE_VERSION=2.137.0 \ 
 	  PATH=$PATH:/opt/node/bin
 
 # Install nodejs & requirements

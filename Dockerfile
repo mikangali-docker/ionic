@@ -7,18 +7,21 @@ ENV IONIC_VERSION=4.5.0 \
     CORDOVA_VERSION=8.0.0 \
     RUBY_VERSION=2.4.1 \
     FASTLANE_VERSION=2.137.0 \ 
-    PATH=$PATH:/opt/node/bin
+    PATH=$PATH:/opt/node/bin:/usr/share/rvm/bin
 
-# Install nodejs & requirements
+# Install nodejs, rvm & requirements
 
 WORKDIR /opt/node
 
-RUN apt-get update && apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 --no-install-recommends && \
+RUN apt-get update && \
+    apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 software-properties-common --no-install-recommends && \
+    apt-add-repository -y ppa:rael-gc/rvm && \
+    apt-get update && \
+    apt-get install -y rvm && \
     curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
-    curl -sSL https://get.rvm.io | bash && \
-    . /etc/profile.d/rvm.sh
+    
 
-# Instal Ionic
+# Instal Ionic + Cordova
 
 RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
 

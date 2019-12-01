@@ -8,8 +8,7 @@ ENV IONIC_VERSION=4.5.0 \
     NODEJS_VERSION=10.15.1 \
     CORDOVA_VERSION=8.0.0 \
     RUBY_VERSION=2.4.1 \
-    FASTLANE_VERSION=2.137.0 \ 
-    PATH=$PATH:/opt/node/bin:/usr/share/rvm/bin
+    FASTLANE_VERSION=2.137.0 
 
 # Install nodejs, rvm & requirements
 
@@ -20,9 +19,10 @@ RUN apt-get update && \
     apt-add-repository -y ppa:rael-gc/rvm && \
     apt-get update && \
     apt-get install -y rvm && \
-    source /etc/profile.d/rvm.sh && \
     curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
     
+ENV PATH=$PATH:/opt/node/bin:/usr/share/rvm/bin
+
 # Instal Ionic + Cordova
 
 RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
@@ -30,7 +30,7 @@ RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
 # Install fastlane and cleanup
 
 RUN rvm install ${RUBY_VERSION} && \
-    rvm use ${RUBY_VERSION} && \
+    bash --login && rvm use ${RUBY_VERSION} && \
     gem install fastlane -NV -v ${FASTLANE_VERSION} && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean

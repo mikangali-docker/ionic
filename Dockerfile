@@ -24,7 +24,9 @@ RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
 
 # Install fastlane and cleanup
 
-RUN gem install fastlane -NV -v ${FASTLANE_VERSION} && \
+RUN rvm install ${RUBY_VERSION} && \
+    rvm use ${RUBY_VERSION} && \
+    gem install fastlane -NV -v ${FASTLANE_VERSION} && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 

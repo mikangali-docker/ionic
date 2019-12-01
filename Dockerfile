@@ -3,17 +3,20 @@ FROM mikangali/android
 LABEL authors="Michael <mike@mikangali.com>"
 
 ENV IONIC_VERSION=4.5.0 \
-	  NODEJS_VERSION=10.15.1 \
-	  CORDOVA_VERSION=8.0.0 \
-	  FASTLANE_VERSION=2.137.0 \ 
-	  PATH=$PATH:/opt/node/bin
+    NODEJS_VERSION=10.15.1 \
+    CORDOVA_VERSION=8.0.0 \
+    RUBY_VERSION=2.4.1
+    FASTLANE_VERSION=2.137.0 \ 
+    PATH=$PATH:/opt/node/bin
 
 # Install nodejs & requirements
 
 WORKDIR /opt/node
 
 RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip2 --no-install-recommends && \
-    curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
+    curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
+    curl -sSL https://get.rvm.io | bash && \
+    source /etc/profile.d/rvm.sh
 
 # Instal Ionic
 

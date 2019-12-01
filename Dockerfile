@@ -14,7 +14,7 @@ ENV IONIC_VERSION=4.5.0 \
 WORKDIR /opt/node
 
 RUN apt-get update && \
-    apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 --no-install-recommends && \
+    apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 ruby-dev --no-install-recommends && \
     curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
     
 ENV PATH=$PATH:/opt/node/bin:/usr/share/rvm/bin

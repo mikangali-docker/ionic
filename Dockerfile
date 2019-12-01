@@ -2,30 +2,28 @@ FROM mikangali/android
 
 LABEL authors="Michael <mike@mikangali.com>"
 
-SHELL ["/bin/bash", "-c"]
-
 ENV IONIC_VERSION=4.5.0 \
-    NODEJS_VERSION=10.15.1 \
-    CORDOVA_VERSION=8.0.0 \
-    FASTLANE_VERSION=2.137.0 
+	  NODEJS_VERSION=10.15.1 \
+	  CORDOVA_VERSION=8.0.0 \
+	  FASTLANE_VERSION=2.137.0 \ 
+	  PATH=$PATH:/opt/node/bin
 
-# Install nodejs, rvm & requirements
+# Install nodejs & requirements
 
 WORKDIR /opt/node
 
-RUN apt-get update && \
-    apt-get install -y curl ca-certificates build-essential libfontconfig bzip2 ruby-dev --no-install-recommends && \
-    curl -sSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
-    
-ENV PATH=$PATH:/opt/node/bin:/usr/share/rvm/bin
+RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip2 --no-install-recommends && \
+    curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
 
-# Instal Ionic + Cordova
+# Instal Ionic
 
 RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
 
 # Install fastlane and cleanup
 
-RUN gem install fastlane -NV -v ${FASTLANE_VERSION} && \
+RUN apt-get install -y build-essential && \
+    apt-get install -y ruby-dev && \    
+    gem install fastlane -NV -v ${FASTLANE_VERSION} && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 

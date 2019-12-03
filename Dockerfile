@@ -12,7 +12,8 @@ ENV NODEJS_VERSION=10.15.1 \
 WORKDIR /opt/node
 
 RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip2 --no-install-recommends && \
-    curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1
+    curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
+    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 ### Instal Ionic + Cordova
 
@@ -37,13 +38,5 @@ RUN source /usr/local/rvm/scripts/rvm && \
 ENV PATH=$PATH:/usr/local/rvm/rubies/ruby-2.5.1/bin
 
 RUN gem install fastlane -NV -v ${FASTLANE_VERSION}
-
-# Fix android build : "No installed build tools found"
-# https://stackoverflow.com/questions/31190355/ionic-build-android-error-no-installed-build-tools-found-please-install-the
-RUN mkdir ~/.android/ && touch ~/.android/repositories.cfg
-RUN yes | sdkmanager --licenses
-RUN sdkmanager "build-tools;27.0.3"
-
-RUN rm -rf /var/lib/apt/lists/* && apt-get clean
 
 WORKDIR /app

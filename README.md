@@ -1,13 +1,17 @@
 # Ionic Docker
 
-A [ionic 1/2](http://ionicframework.com) image, ready for Gitlab CI android builds
+A [ionic 3](http://ionicframework.com) image, ready for Gitlab CI android builds
 
-[![Docker build](https://img.shields.io/docker/automated/mikangali/ionic.svg)](https://hub.docker.com/r/mikangali/ionic)
+[![Docker ionic](https://img.shields.io/docker/automated/mikangali/ionic.svg)](https://hub.docker.com/r/mikangali/ionic)
+
+This images ise based on [android docker (ubuntu)](https://github.com/mikangali-docker/android) image. 
+
+[![Docker android](https://img.shields.io/docker/automated/mikangali/android.svg)](https://hub.docker.com/r/mikangali/android)
 
 ### Features
 
 - NodeJs v8
-- Ionic 2
+- Ionic 3
 - Cordova 8
 - Android-25
 

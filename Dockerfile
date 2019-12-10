@@ -17,10 +17,10 @@ RUN apt-get update && apt-get install -y curl ca-certificates libfontconfig bzip
 
 ### Instal Ionic + Cordova
 
-ENV IONIC_VERSION=4.5.0 \
+ENV IONIC_VERSION=5.4.10 \
     CORDOVA_VERSION=8.0.0 
 
-RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION}
+RUN npm i -g --unsafe-perm cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION} native-run cordova-res
 
 ### Install ruby the fastlane
 
